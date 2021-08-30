@@ -1,3 +1,5 @@
+package source;
+
 public class View {
 
     public static final String WELCOME_MESSAGE = "Hello, you should guess a number in range from " + Model.MIN_VALUE + " to " + Model.MAX_VALUE;
