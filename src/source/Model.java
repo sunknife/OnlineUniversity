@@ -49,6 +49,6 @@ public class Model {
     }
 
     private int rand() {
-        return rand(MIN_VALUE, MAX_VALUE);
+        return rand(MIN_VALUE + 1, MAX_VALUE -1);
     }
 }
