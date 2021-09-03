@@ -9,7 +9,7 @@ import static View.TextConstants.INPUT_WRONG_DATA;
 public class View {
 
     static String MESSAGES_BUNDLE_NAME = "messages";
-    public static final ResourceBundle bundle = ResourceBundle.getBundle(MESSAGES_BUNDLE_NAME,new Locale("ua"));
+    public static final ResourceBundle bundle = ResourceBundle.getBundle(MESSAGES_BUNDLE_NAME,new Locale("en"));
 
     public void printMessage(String message) {
         System.out.println(message);

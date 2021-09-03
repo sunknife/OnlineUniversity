@@ -16,7 +16,7 @@ public class UtilityController {
     public String inputStringValueWithScanner(String message, String regEx){
         String result;
         view.printStringInput(message);
-        while ( !(scanner.hasNext() && (result = scanner.next()).matches(regEx)) ){
+        while ( !(scanner.hasNext() && (result = scanner.nextLine()).matches(regEx)) ){
             view.printWrongStringInput(message);
         }
         return result;

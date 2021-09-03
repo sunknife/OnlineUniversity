@@ -8,4 +8,6 @@ public interface TextConstants {
     String COMMENT = "input.comment.data";
     String HOME_PHONE = "input.home.phone.data";
     String EMAIL = "input.email.data";
+    String STREET_ADDRESS = "input.street.address.data";
+    String HOUSE_NUMBER = "input.house.number.data";
 }

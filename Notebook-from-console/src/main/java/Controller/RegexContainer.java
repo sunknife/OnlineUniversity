@@ -13,7 +13,17 @@ public interface RegexContainer {
 
     String REGEX_EMAIL = "[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+";
 
+    String REGEX_POSTAL_CODE ="\\d{5}";
 
+    String REGEX_STREET_NAME_UKR = "[а-щьюяіїє]{3,8}.?\\s[А-ЩЬЮЯІЇЄ][а-щьюяіїє']{2,15}-?\\s?[А-ЩЬЮЯІЇЄ]?[а-щьюяіїє]{2,15}?";
+
+    String REGEX_STREET_NAME_LAT = "[A-Z][a-z]+(\\s[A-Za-z][a-z]+){1,}";
+
+    String REGEX_HOUSE_NUMBER_UKR = "\\d{1,4}/?-?\\d{1,3}[абвгдєж]?";
+
+    String REGEX_HOUSE_NUMBER_LAT = "\\d{1,}[/-]?(\\d+)?[a-z]?";
+
+    String REGEX_APARTMENT_NUMBER = "\\d{1,4}";
 
 
 
