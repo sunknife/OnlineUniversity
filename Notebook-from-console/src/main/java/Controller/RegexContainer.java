@@ -5,6 +5,10 @@ public interface RegexContainer {
 
     String REGEX_NAME_UKR = "[А-ЩЬЮЯІЇЄ][а-щьюяіїє']{1,19}[а-щьюяіїє]";
 
+    String REGEX_SURNAME_LAT = "[A-Za-z]+ ?([A-Z][a-z]+)?";
+
+    String REGEX_SURNAME_UKR = "[А-ЩЬЮЯІЇЄа-щьюяіїє][а-щьюяіїє']+[ -]?([А-ЩЬЮЯІЇЄ][а-щьюяіїє']+[а-щьюяіїє])?";
+
     String REGEX_NICKNAME = "[A-Za-z0-9_-]{8,20}";
 
     String REGEX_COMMENT = "[\\w\\s]+";
