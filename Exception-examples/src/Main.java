@@ -1,5 +1,8 @@
+import java.io.EOFException;
+import java.io.FileNotFoundException;
+
 public class Main {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) {
         //Error ref = new Error(); // создаем экземпляр
         //throw ref;               // "бросаем" его
         //f(null);
@@ -47,8 +50,38 @@ public class Main {
 //            System.err.println("finally");
 //        }
 //        System.err.println("more");
+//        f0();
+//        f1();
+//        try {
+//            throw new Throwable();
+//        } catch (Exception e) {
+//            // ...
+//        }
+//        try {
+//            throw new Exception();
+//        } catch (Error e) {
+//            // ...
+//        }
+//        Throwable t = new Exception(); // и лететь будет Exception
+//        throw t; // но тут ошибка компиляции
+//        try {
+//            Throwable t = new Exception(); // а лететь будет Exception
+//            throw t;
+//        } catch (Exception e) { // и мы перехватим Exception
+//            System.out.println("Перехвачено!");
+//        }
 
     }
+
+
+//    public static void f2(Throwable t) throws Exception {
+//        throw t;
+//    }
+//    public static void f3(Object ref){
+//        char c = ref.charAt(0);
+//    }
+    public static void f0() throws EOFException {}
+    public static void f1() throws FileNotFoundException {}
 
     public static int area(int width, int height) {
         if (width < 0 || height < 0) {
@@ -84,4 +117,6 @@ public class Main {
     }
 
 
+
 }
+
