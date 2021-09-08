@@ -42,19 +42,32 @@ public class InputNoteBook {
         String streetAddressLocale = (String.valueOf(View.bundle.getLocale()).equals("ua")) ? REGEX_STREET_NAME_UKR : REGEX_STREET_NAME_LAT;
         String surnameLocale = (String.valueOf(View.bundle.getLocale()).equals("ua"))  ? REGEX_SURNAME_UKR : REGEX_SURNAME_LAT;
         this.firstName = utilityController.inputStringValueWithScanner(FIRST_NAME, localeName);
-        this.surname = utilityController.inputStringValueWithScanner(SURNAME, surnameLocale);
-        this.fatherName = utilityController.inputStringValueWithScanner(FATHER_NAME, localeName);
+        //this.surname = utilityController.inputStringValueWithScanner(SURNAME, surnameLocale);
+        //this.fatherName = utilityController.inputStringValueWithScanner(FATHER_NAME, localeName);
         this.nickname = utilityController.inputStringValueWithScanner(NICKNAME,REGEX_NICKNAME);
-        this.comment = utilityController.inputStringValueWithScanner(COMMENT, REGEX_COMMENT);
-        this.homePhoneNumber = utilityController.inputStringValueWithScanner(HOME_PHONE,REGEX_PHONE);
-        this.mobilePhoneNumber = utilityController.inputStringValueWithScanner(MOBILE_PHONE, REGEX_PHONE);
-        this.email = utilityController.inputStringValueWithScanner(EMAIL, REGEX_EMAIL);
-        this.skypeLogin = utilityController.inputStringValueWithScanner(SKYPE_LOGIN, REGEX_NICKNAME);
-        this.postalCode = utilityController.inputStringValueWithScanner(POSTAL_CODE, REGEX_POSTAL_CODE);
-        this.streetAddress = utilityController.inputStringValueWithScanner(STREET_ADDRESS, streetAddressLocale);
-        this.houseNumber = utilityController.inputStringValueWithScanner(HOUSE_NUMBER, houseNumberLocale);
-        this.apartmentNumber = utilityController.inputStringValueWithScanner(APARTMENT_NUMBER, REGEX_APARTMENT_NUMBER);
-        this.noteCreationDate = new Date();
+        //this.comment = utilityController.inputStringValueWithScanner(COMMENT, REGEX_COMMENT);
+        //this.homePhoneNumber = utilityController.inputStringValueWithScanner(HOME_PHONE,REGEX_PHONE);
+        //this.mobilePhoneNumber = utilityController.inputStringValueWithScanner(MOBILE_PHONE, REGEX_PHONE);
+        //this.email = utilityController.inputStringValueWithScanner(EMAIL, REGEX_EMAIL);
+        //this.skypeLogin = utilityController.inputStringValueWithScanner(SKYPE_LOGIN, REGEX_NICKNAME);
+        //this.postalCode = utilityController.inputStringValueWithScanner(POSTAL_CODE, REGEX_POSTAL_CODE);
+        //this.streetAddress = utilityController.inputStringValueWithScanner(STREET_ADDRESS, streetAddressLocale);
+        //this.houseNumber = utilityController.inputStringValueWithScanner(HOUSE_NUMBER, houseNumberLocale);
+        //this.apartmentNumber = utilityController.inputStringValueWithScanner(APARTMENT_NUMBER, REGEX_APARTMENT_NUMBER);
+        //this.noteCreationDate = new Date();
 
+    }
+
+    public void inputNickname() {
+        UtilityController utilityController = new UtilityController(view, scanner);
+        this.nickname = utilityController.inputStringValueWithScanner(NICKNAME,REGEX_NICKNAME);
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getNickname() {
+        return nickname;
     }
 }
