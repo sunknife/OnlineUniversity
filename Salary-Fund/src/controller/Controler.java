@@ -22,9 +22,14 @@ public class Controler {
     public void processUser() {
         Scanner scanner = new Scanner(System.in);
         Department firstDepartment = new Department("Games", SalaryDistribution.EQUAL);
-        firstDepartment.addEmployee(new Employee("Oleg",LocalDate.of(1984,9,18), BigDecimal.valueOf(20000)));
-        firstDepartment.setDepartmentSalaryFund(BigDecimal.valueOf(10000));;
-        System.out.println(firstDepartment.isEnoughMoneyInFund());
+        firstDepartment.addEmployee(new Employee("Oleg Vasylkov",LocalDate.of(1984,9,18), BigDecimal.valueOf(20000)));
+        firstDepartment.addEmployee(new Employee("Stanislav Kuragin",LocalDate.of(1982,3,24),BigDecimal.valueOf(15000)));
+        firstDepartment.setDepartmentSalaryFund(BigDecimal.valueOf(40000));
+        Payroll payroll = new Payroll(view);
+        payroll.addDepartment(firstDepartment);
+        payroll.generateMonthSalary(3);
     }
+
+
 
 }

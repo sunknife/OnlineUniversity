@@ -17,4 +17,12 @@ public class Employee {
     public BigDecimal getSalary() {
         return salary;
     }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
 }
