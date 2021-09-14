@@ -13,4 +13,8 @@ public class Employee {
         this.birthDate = birthDate;
         this.salary = salary;
     }
+
+    public BigDecimal getSalary() {
+        return salary;
+    }
 }

@@ -15,4 +15,26 @@ public class Department {
         this.employeesInDepartment = new ArrayList<>();
     }
 
+    public void addEmployee(Employee employee){
+        employeesInDepartment.add(employee);
+    }
+
+    public void setDepartmentSalaryFund(BigDecimal fund){
+        departmentSalaryFund = fund;
+    }
+
+    public boolean isEnoughMoneyInFund() {
+        if (employeesInDepartment.isEmpty()) {
+            return true;
+        } else {
+            BigDecimal totalSalary = BigDecimal.valueOf(0);
+            for (Employee employee: employeesInDepartment) {
+                totalSalary = totalSalary.add(employee.getSalary());
+                System.out.println("Employee salary = " + employee.getSalary());
+                System.out.println(totalSalary);
+            }
+            return totalSalary.compareTo(departmentSalaryFund) < 0;
+        }
+    }
+
 }
