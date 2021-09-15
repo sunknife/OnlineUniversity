@@ -3,6 +3,7 @@ package model.entity;
 import view.View;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -19,12 +20,20 @@ public class Department {
         this.employeesInDepartment = new ArrayList<>();
     }
 
+    public SalaryDistribution getSalaryDistribution() {
+        return salaryDistribution;
+    }
+
     public void addEmployee(Employee employee){
         employeesInDepartment.add(employee);
     }
 
     public void setDepartmentSalaryFund(BigDecimal fund){
         departmentSalaryFund = fund;
+    }
+
+    public BigDecimal getDepartmentSalaryFund() {
+        return departmentSalaryFund;
     }
 
     public String getName() {
@@ -68,13 +77,9 @@ public class Department {
         return totalSalary;
     }
 
-    public BigDecimal monthBonus(int month) {
+    public BigDecimal equalMonthBonus(int month) {
         BigDecimal bonus = departmentSalaryFund.subtract(totalSalaryPlusBirthdayBonus(month));
-        if (salaryDistribution == SalaryDistribution.EQUAL) {
-            bonus = bonus.divide(BigDecimal.valueOf(employeesInDepartment.size()));
-        } else {
-            // still don't know how to do proportional distribution
-        }
+            bonus = bonus.divide(BigDecimal.valueOf(employeesInDepartment.size()),2, RoundingMode.HALF_UP);
         return bonus;
     }
 }
