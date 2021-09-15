@@ -82,4 +82,10 @@ public class Department {
             bonus = bonus.divide(BigDecimal.valueOf(employeesInDepartment.size()),2, RoundingMode.HALF_UP);
         return bonus;
     }
+
+    public BigDecimal proportionalEmployeeMonthBonus(Employee employee, int month) {
+        BigDecimal bonus = employee.getSalary().divide(calculateTotalSalary(),2, RoundingMode.HALF_UP);
+        bonus = bonus.multiply(getDepartmentSalaryFund().subtract(totalSalaryPlusBirthdayBonus(month)));
+        return bonus;
+    }
 }

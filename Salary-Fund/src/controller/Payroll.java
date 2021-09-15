@@ -35,8 +35,8 @@ public class Payroll {
                 view.printMessage("Department [" + department.getName() + "]  Month: " + LocalDate.of(2021, month, 28).getMonth());
                 for (Employee employee: department.getEmployeesInDepartment()) {
                     if (department.getSalaryDistribution() == SalaryDistribution.PROPORTIONAL) {
-                        bonus = employee.getSalary().divide(department.calculateTotalSalary(),2, RoundingMode.HALF_UP);
-                        bonus = bonus.multiply(department.getDepartmentSalaryFund().subtract(department.totalSalaryPlusBirthdayBonus(month)));
+                        bonus = department.proportionalEmployeeMonthBonus(employee, month);
+
                     }
                     if (employee.getBirthDate().getMonth().getValue() == month)  {
                         view.printMessage("Employee " + employee.getFullName() + " salary = " + employee.getSalary().add(bonus).add(Department.BIRTHDAY_BONUS));
