@@ -10,11 +10,13 @@ public class Main {
             list.add(element);
         }
         System.out.println(dublicateCount(list));
+
         NewArrayList<Integer> arrayList= new NewArrayList();
         arrayList.add(4);
         System.out.println(arrayList);
         arrayList.remove(0);
         System.out.println(arrayList);
+
         ArrayListFromScratch<Integer> arrayListFromScratch = new ArrayListFromScratch<>();
         arrayListFromScratch.add(4);
         arrayListFromScratch.add(3);
@@ -29,10 +31,19 @@ public class Main {
         arrayListFromScratch.add(1);
         arrayListFromScratch.remove(9);
         arrayListFromScratch.trimToSize();
-
         System.out.println(arrayListFromScratch);
         System.out.println(arrayListFromScratch.size());
         System.out.println(arrayListFromScratch.getCapacity());
+
+        LinkedListFromScratch<Integer> linkedListFromScratch = new LinkedListFromScratch<>();
+        linkedListFromScratch.addLast(3);
+        linkedListFromScratch.addLast(2);
+        linkedListFromScratch.addFirst(0);
+        System.out.println(linkedListFromScratch.size());
+        System.out.println(linkedListFromScratch.get(0));
+        for (Integer element: linkedListFromScratch) {
+            System.out.println(element);
+        }
 
 
     }
