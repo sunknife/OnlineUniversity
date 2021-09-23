@@ -15,6 +15,24 @@ public class Main {
         System.out.println(arrayList);
         arrayList.remove(0);
         System.out.println(arrayList);
+        ArrayListFromScratch<Integer> arrayListFromScratch = new ArrayListFromScratch<>();
+        arrayListFromScratch.add(4);
+        arrayListFromScratch.add(3);
+        arrayListFromScratch.add(2);
+        arrayListFromScratch.add(2);
+        arrayListFromScratch.add(5);
+        arrayListFromScratch.add(7);
+        arrayListFromScratch.add(-2);
+        arrayListFromScratch.add(4);
+        arrayListFromScratch.add(2);
+        arrayListFromScratch.add(3);
+        arrayListFromScratch.add(1);
+        arrayListFromScratch.remove(9);
+        arrayListFromScratch.trimToSize();
+
+        System.out.println(arrayListFromScratch);
+        System.out.println(arrayListFromScratch.size());
+        System.out.println(arrayListFromScratch.getCapacity());
 
 
     }
