@@ -10,11 +10,7 @@ import java.util.stream.Stream;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-    private List<User> users = Stream.of(
-            new User(1L, "Ihor", "Brodwick"),
-            new User(2L, "Oleg", "Combarov"),
-            new User(3L, "Misha", "Lentyaev")
-    ).collect(Collectors.toList());
+    private List<User> users;
 
     @GetMapping
     public List<User> getAll() {
