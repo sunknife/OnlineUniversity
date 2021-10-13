@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -7,16 +7,16 @@
 <body>
 <div class="container">
     <form class="form-signin" method="post" action="/auth/login">
-        <h2 class="form-signin-heading">Login</h2>
+        <h2 class="form-signin-heading" th:text="#{login.page.header}"></h2>
         <p>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
+            <label for="username" th:text="#{login.page.username.input}"></label>
+            <input type="text" id="username" name="username" class="form-control" th:placeholder="#{login.page.username.input}" required>
         </p>
         <p>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required >
+            <label for="password" th:text="#{login.page.password.input}"></label>
+            <input type="password" id="password" name="password" class="form-control" th:placeholder="#{login.page.password.input}" required >
         </p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in </button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.page.signin.button}" ></button>
     </form>
 </div>
 

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Cabinet</title>
 </head>
 <body>
-<h1>You are in Cabinet</h1>
+<h1 th:text="#{cabinet.page.header}"></h1>
 <form action="/auth/logout" method="post">
-    <button type="submit">Logout</button>
+    <button type="submit" th:text="#{cabinet.page.logout.button}" ></button>
 </form>
 </body>
 </html>
