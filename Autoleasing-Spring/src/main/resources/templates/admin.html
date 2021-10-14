@@ -9,5 +9,29 @@
 <form action="/auth/logout" method="post">
     <button type="submit" th:text="#{cabinet.page.logout.button}" ></button>
 </form>
+
+<h2 th:text="#{admin.page.users.table.name}">Users</h2>
+<table border="1">
+    <tr>
+        <th th:text="#{admin.page.users.table.user.name}"></th>
+        <th th:text="#{admin.page.users.table.user.surname}">Surname</th>
+        <th th:text="#{admin.page.users.table.user.email}">Email</th>
+        <th th:text="#{admin.page.users.table.user.password}">Password</th>
+        <th th:text="#{admin.page.users.table.user.role}">Role</th>
+        <th th:text="#{admin.page.users.table.user.status}">Status</th>
+        <th th:text="#{admin.page.users.table.user.status.table.action}">Status</th>
+    </tr>
+    <tr th:each = "user: ${users}">
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.password}"></td>
+        <td th:text="${user.role}"></td>
+        <td th:text="${user.status}"></td>
+        <td><button type="button" th:text="#{admin.page.users.table.user.status.button.action}">
+
+        </button></td>
+    </tr>
+</table>
 </body>
 </html>

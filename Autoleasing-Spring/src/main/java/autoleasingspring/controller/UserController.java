@@ -11,7 +11,6 @@ import java.util.stream.Stream;
 @RequestMapping("/api/users")
 public class UserController {
     private List<User> users;
-
     @GetMapping
     public List<User> getAll() {
         return users;
