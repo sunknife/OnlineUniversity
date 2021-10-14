@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{manager.page.title}"></title>
+</head>
+<body>
+<h1 th:text="#{manager.page.header}"></h1>
+<form action="/auth/logout" method="post">
+    <button type="submit" th:text="#{cabinet.page.logout.button}" ></button>
+</form>
+</body>
+</html>

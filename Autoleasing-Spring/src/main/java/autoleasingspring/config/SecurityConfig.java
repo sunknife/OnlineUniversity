@@ -1,5 +1,6 @@
 package autoleasingspring.config;
 
+import autoleasingspring.controller.AuthentificationSuccessHandler;
 import autoleasingspring.entity.Permission;
 import autoleasingspring.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/auth/login").permitAll()
-                .defaultSuccessUrl("/auth/cabinet")
+                //.defaultSuccessUrl("/auth/cabinet")
+                .successHandler(authentificationSuccessHandler)
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/auth/logout", "POST"))
@@ -74,4 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         daoAuthenticationProvider.setUserDetailsService(userDetailsService);
         return daoAuthenticationProvider;
     }
+
+    @Autowired
+    private AuthentificationSuccessHandler authentificationSuccessHandler;
 }
