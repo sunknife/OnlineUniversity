@@ -28,9 +28,9 @@
         <td th:text="${user.password}"></td>
         <td th:text="${user.role}"></td>
         <td th:text="${user.status}"></td>
-        <td><button type="button" th:text="#{admin.page.users.table.user.status.button.action}">
+        <td><a type="button" th:text="#{admin.page.users.table.user.status.button.action}" th:href="@{/auth/admin/ban(id=${user.id})}">
 
-        </button></td>
+        </a></td>
     </tr>
 </table>
 </body>
