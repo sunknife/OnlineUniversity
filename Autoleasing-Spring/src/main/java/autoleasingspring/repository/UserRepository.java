@@ -11,12 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Repository
-@Transactional
 public interface UserRepository extends JpaRepository<User,Long> {
     Optional<User> findByEmail(String email);
     Optional<User> findById(Long id);
 
+    @Transactional
     @Modifying
-    @Query("update User u set u.status = ?1 where u.id = ?2")
+    @Query("update User u set u.status = :status where u.id = :id")
     void updateUserStatusById(Status status, Long id);
 }

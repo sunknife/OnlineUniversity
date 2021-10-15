@@ -15,7 +15,6 @@ public class AuthentificationSuccessHandler extends SavedRequestAwareAuthenticat
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
         String role = authentication.getAuthorities().toString();
-        System.out.println("Role is " + role);
         String targetUrl = request.getContextPath();
         if (role.contains("users:write")) {
             targetUrl = "admin";
@@ -24,7 +23,6 @@ public class AuthentificationSuccessHandler extends SavedRequestAwareAuthenticat
         } else if (role.contains("users:start")){
             targetUrl = "cabinet";
         }
-        System.out.println("Target url is " + targetUrl);
         response.sendRedirect(targetUrl);
     }
 }
