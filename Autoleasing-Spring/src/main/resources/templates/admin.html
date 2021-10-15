@@ -28,9 +28,10 @@
         <td th:text="${user.password}"></td>
         <td th:text="${user.role}"></td>
         <td th:text="${user.status}"></td>
-        <td><a type="button" th:text="#{admin.page.users.table.user.status.button.action}" th:href="@{/auth/admin/ban(id=${user.id})}">
-
-        </a></td>
+        <td>
+                    <a type="submit"  th:text="#{admin.page.users.table.user.status.button.action}" th:href="@{/auth/admin/ban(id=${user.id})}"></a>
+                    <a type="submit"   th:text="#{admin.page.users.table.user.status.button.action.unblock}" th:href="@{/auth/admin/unblock(id=${user.id})}"></a>
+        </td>
     </tr>
 </table>
 </body>
