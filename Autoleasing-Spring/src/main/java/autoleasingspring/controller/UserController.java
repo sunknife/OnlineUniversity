@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@RestController
+/*@RestController
 @RequestMapping("/api/users")
 public class UserController {
     private List<User> users;
@@ -31,4 +31,4 @@ public class UserController {
     public void deleteById(@PathVariable Long id) {
         this.users.removeIf(user -> user.getId().equals(id));
     }
-}
+}*/

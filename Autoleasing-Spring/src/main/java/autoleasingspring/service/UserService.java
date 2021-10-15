@@ -24,4 +24,8 @@ public class UserService {
     public void updateUserStatus(Long id, Status status) {
         userRepository.updateUserStatusById(status,id);
     }
+
+    public void saveUser(User user){
+        userRepository.save(user);
+    };
 }
