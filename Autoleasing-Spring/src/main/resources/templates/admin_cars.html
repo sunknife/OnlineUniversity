@@ -15,12 +15,17 @@
         <th th:text="#{admin.cars.page.cars.table.car.brand}"></th>
         <th th:text="#{admin.cars.page.cars.table.car.class}"></th>
         <th th:text="#{admin.cars.page.cars.table.car.price}"></th>
+        <th th:text="#{admin.cars.page.cars.table.car.action}"></th>
     </tr>
     <tr th:each = "car: ${cars}">
         <td th:text="${car.model}"></td>
         <td th:text="${car.brand}"></td>
         <td th:text="${car.carClass}"></td>
         <td th:text="${car.price}"></td>
+        <td>
+            <a type="submit"  th:text="#{admin.cars.page.cars.table.car.action.edit}" th:href="@{/auth/admin/cars/edit(id=${car.id})}"></a>
+            <a type="submit"  th:text="#{admin.cars.page.cars.table.car.action.delete}" th:href="@{/auth/admin/cars/delete(id=${car.id})}"></a>
+        </td>
     </tr>
 
 </table>

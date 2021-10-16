@@ -55,4 +55,17 @@ public class AdminController {
         return "add_car";
     }
 
+    @GetMapping("/cars/edit")
+    public String editCar(@RequestParam Long id, Model model) {
+        model.addAttribute("edit_car", carService.findCarById(id));
+        return "edit_car";
+    }
+
+    @PostMapping("/cars/save_edit_car")
+    public String saveEditCar(@ModelAttribute Car edit_car,  Model model) {
+        carService.updateCar(edit_car, edit_car.getId());;
+        model.addAttribute("cars", carService.getAllCars());
+        return "admin_cars";
+    }
+
 }
