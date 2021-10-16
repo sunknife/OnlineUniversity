@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/auth/admin" method="get">
+    <button type="submit" th:text="#{admin.cars.page.back}" ></button>
+</form>
+<h2 th:text="#{admin.cars.page.cars.table.name}"></h2>
+<table border="1">
+    <tr>
+        <th th:text="#{admin.cars.page.cars.table.car.model}"></th>
+        <th th:text="#{admin.cars.page.cars.table.car.brand}"></th>
+        <th th:text="#{admin.cars.page.cars.table.car.class}"></th>
+        <th th:text="#{admin.cars.page.cars.table.car.price}"></th>
+    </tr>
+    <tr th:each = "car: ${cars}">
+        <td th:text="${car.model}"></td>
+        <td th:text="${car.brand}"></td>
+        <td th:text="${car.carClass}"></td>
+        <td th:text="${car.price}"></td>
+    </tr>
+
+</table>
+<form action="/auth/admin/addcar" method="get">
+    <button type="submit" th:text="#{admin.cars.page.cars.table.car.add.car}" ></button>
+</form>
+</body>
+</html>
