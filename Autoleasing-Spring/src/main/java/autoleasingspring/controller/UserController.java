@@ -1,34 +1,34 @@
 package autoleasingspring.controller;
 
-import autoleasingspring.entity.User;
-import org.springframework.web.bind.annotation.*;
+import autoleasingspring.service.CarService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-/*@RestController
-@RequestMapping("/api/users")
+@Controller
+@RequestMapping("/auth/cabinet")
 public class UserController {
-    private List<User> users;
-    @GetMapping
-    public List<User> getAll() {
-        return users;
+
+    private final CarService carService;
+
+    @Autowired
+    public UserController(CarService carService) {
+        this.carService = carService;
     }
 
-    @GetMapping("/{id}")
-    public User getById(@PathVariable Long id) {
-        return users.stream().filter(user -> user.getId().equals(id)).findFirst().orElse(null);
+    @GetMapping("")
+    public String helloUser(Model model) {
+        model.addAttribute("cars", carService.getAllCars());
+        return "cabinet";
     }
 
-    @PostMapping
-    public User createUser(@RequestBody User user) {
-        this.users.add(user);
-        return user;
+    @GetMapping("/order")
+    public String orderFillStart(@RequestParam Long id, Model model) {
+        return "order";
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Long id) {
-        this.users.removeIf(user -> user.getId().equals(id));
-    }
-}*/
+}

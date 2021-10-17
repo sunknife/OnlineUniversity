@@ -25,10 +25,6 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping("/cabinet")
-    public String getCabinetPage() {
-        return "cabinet";
-    }
 
     @GetMapping("/admin")
     public String getAdminPage(Model model) {

@@ -9,5 +9,24 @@
 <form action="/auth/logout" method="post">
     <button type="submit" th:text="#{cabinet.page.logout.button}" ></button>
 </form>
+<h2 th:text="#{cabinet.page.cars.table.name}"></h2>
+<table border="1">
+    <tr>
+        <th th:text="#{admin.cars.page.cars.table.car.model}"></th>
+        <th th:text="#{admin.cars.page.cars.table.car.brand}"></th>
+        <th th:text="#{admin.cars.page.cars.table.car.class}"></th>
+        <th th:text="#{admin.cars.page.cars.table.car.price}"></th>
+        <th th:text="#{admin.cars.page.cars.table.car.action}"></th>
+    </tr>
+    <tr th:each = "car: ${cars}">
+        <td th:text="${car.model}"></td>
+        <td th:text="${car.brand}"></td>
+        <td th:text="${car.carClass}"></td>
+        <td th:text="${car.price}"></td>
+        <td>
+            <a type="submit"  th:text="#{cabinet.page.cars.table.select}" th:href="@{/auth/cabinet/order(id=${car.id})}"></a>
+        </td>
+    </tr>
+</table>
 </body>
 </html>
