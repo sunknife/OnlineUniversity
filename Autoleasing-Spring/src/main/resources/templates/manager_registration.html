@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="#{registration.page.title}"></title>
+</head>
+<body>
+<h1 th:text="#{manager.registration.page.header}"></h1>
+<form action="/auth/admin" method="get">
+  <button type="submit" th:text="#{admin.cars.page.back}" ></button>
+</form>
+<form action="/auth/admin/save_manager" th:object="${manager}" method="POST">
+  <div>
+    <label th:text="#{registration.page.user.firstName}"></label>
+    <input type="text" id="firstName" name="firstName"  required/>
+  </div>
+  <div>
+    <label th:text="#{registration.page.user.lastName}"></label>
+    <input type="text" id="lastName" name="lastName" required/>
+  </div>
+  <div>
+    <label th:text="#{registration.page.user.email}"></label>
+    <input type="text" id="email" name="email" required/>
+  </div>
+  <div>
+    <label th:text="#{registration.page.user.password}"></label>
+    <input type="password" id="password" name="password" required/>
+  </div>
+  <button type="submit" th:text="#{registration.page.user.submit}">submit</button>
+</form>
+</body>
+</html>

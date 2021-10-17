@@ -31,6 +31,10 @@ public class CarService {
         carRepository.updateCar(car.getModel(),car.getBrand(), car.getCarClass(), car.getPrice(), id);
     }
 
+    public void deleteCar(Long id) {
+        carRepository.deleteById(id);
+    }
+
     public Optional<Car> findCarById(Long id) {
         return carRepository.findById(id);
     }

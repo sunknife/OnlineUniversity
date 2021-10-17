@@ -1,10 +1,13 @@
 package autoleasingspring.controller;
 
 import autoleasingspring.entity.Car;
+import autoleasingspring.entity.Role;
 import autoleasingspring.entity.Status;
+import autoleasingspring.entity.User;
 import autoleasingspring.service.CarService;
 import autoleasingspring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +17,13 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
     private final UserService userService;
     private final CarService carService;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public AdminController(UserService userService, CarService carService) {
+    public AdminController(UserService userService, CarService carService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.carService = carService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/ban")
@@ -66,6 +71,30 @@ public class AdminController {
         carService.updateCar(edit_car, edit_car.getId());;
         model.addAttribute("cars", carService.getAllCars());
         return "admin_cars";
+    }
+
+    @GetMapping("/cars/delete")
+    public String deleteCar(@RequestParam Long id, Model model) {
+        carService.deleteCar(id);
+        model.addAttribute("cars", carService.getAllCars());
+        return "admin_cars";
+    }
+
+    @GetMapping("/add_manager")
+    public String addManager(Model model) {
+        User manager = new User();
+        model.addAttribute("manager", manager);
+        return "manager_registration";
+    }
+
+    @PostMapping("/save_manager")
+    public String saveManager(@ModelAttribute User manager,Model model){
+        manager.setRole(Role.MANAGER);
+        manager.setStatus(Status.ACTIVE);
+        manager.setPassword(passwordEncoder.encode(manager.getPassword()));
+        userService.saveUser(manager);
+        model.addAttribute("users",userService.getAllUsers());
+        return "admin";
     }
 
 }
