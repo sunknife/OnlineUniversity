@@ -9,5 +9,24 @@
 <form action="/auth/logout" method="post">
     <button type="submit" th:text="#{cabinet.page.logout.button}" ></button>
 </form>
+<h2 th:text="#{manager.page.table.header}"></h2>
+<table border="1">
+    <tr>
+        <th th:text="#{manager.page.orders.table.user.name}"></th>
+        <th th:text="#{manager.page.orders.table.car.name}">Surname</th>
+        <th th:text="#{manager.page.orders.table.user.passport}">Email</th>
+        <th th:text="#{manager.page.orders.table.user.withDriver}">Password</th>
+        <th th:text="#{manager.page.orders.table.order.start.date}">Role</th>
+        <th th:text="#{manager.page.orders.table.order.end.date}">Status</th>
+        <th th:text="#{manager.page.orders.table.order.status}">Status</th>
+    </tr>
+    <tr th:each = "order: ${orders}">
+        <td th:text="${order.userId}"></td>
+        <td th:text="${order.carId}"></td>
+        <td th:text="${order.passport}"></td>
+        <td th:text="${order.isWithDriver}"></td>
+        <td th:text="${order.startDate}"></td>
+        <td th:text="${order.endDate}"></td>
+        <td th:text="${order.status}"></td>
 </body>
 </html>

@@ -2,9 +2,33 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="#{order.page.title}"></title>
+    <title th:text="#{user.order.page.title}"></title>
 </head>
 <body>
-
+<form action="/auth/cabinet/save_order" th:object="${order}" method="POST">
+    <div>
+        <input type="hidden" id="carId" name="carId" th:field="${order.carId}">
+    </div>
+    <div>
+        <input type="hidden" id="userId" name="userId" th:field="${order.userId}">
+    </div>
+    <div>
+        <label th:text="#{user.order.page.passport}"></label>
+        <input type="text" id="passport" name="passport"  required/>
+    </div>
+    <div>
+        <label th:text="#{user.order.page.driver}"></label>
+        <input type="checkbox" id="isWithDriver" name="isWithDriver" th:field="*{isWithDriver}"/>
+    </div>
+    <div>
+        <label th:text="#{user.order.page.start.date}"></label>
+        <input type="date" id="startDate" name="startDate" required/>
+    </div>
+    <div>
+        <label th:text="#{user.order.page.end.date}"></label>
+        <input type="date" id="endDate" name="endDate" required/>
+    </div>
+    <button type="submit" th:text="#{registration.page.user.submit}">submit</button>
+</form>
 </body>
 </html>
