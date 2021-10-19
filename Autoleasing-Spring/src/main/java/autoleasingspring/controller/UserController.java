@@ -6,6 +6,7 @@ import autoleasingspring.entity.User;
 import autoleasingspring.service.CarService;
 import autoleasingspring.service.OrderService;
 import autoleasingspring.service.UserService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,14 +35,20 @@ public class UserController {
     @GetMapping("")
     public String helloUser(Model model) {
         model.addAttribute("cars", carService.getAllCars());
+        model.addAttribute("direction", "asc");
+        return "cabinet";
+    }
+
+    @GetMapping("/")
+    public String sortForUser(@RequestParam String sort_by,@RequestParam String sort_dir, Model model) {
+        model.addAttribute("direction", sort_dir.equals("asc") ? "desc" : "asc");
+        model.addAttribute("cars", carService.getAllCarsSortedBy(sort_by, sort_dir));
         return "cabinet";
     }
 
     @GetMapping("/order")
     public String orderFillStart(@RequestParam Long id, Model model, HttpServletRequest request) {
         String username = request.getUserPrincipal().getName();
-        //remove sout
-        System.out.println(username);
         Optional<User> currentUser = userService.findByEmail(username);
         Order order = new Order();
         order.setCarId(id);

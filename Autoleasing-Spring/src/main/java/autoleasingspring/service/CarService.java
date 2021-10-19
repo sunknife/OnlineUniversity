@@ -4,10 +4,12 @@ import autoleasingspring.entity.Car;
 import autoleasingspring.entity.CarClass;
 import autoleasingspring.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Service
@@ -21,6 +23,10 @@ public class CarService {
 
     public List<Car> getAllCars() {
         return carRepository.findAll();
+    }
+
+    public List<Car> getAllCarsSortedBy(String sorted_by, String sorted_dir) {
+        return carRepository.findAll(Sort.by(Sort.Direction.fromString(sorted_dir.toUpperCase()), sorted_by));
     }
 
     public void saveCar(Car car){

@@ -19,4 +19,5 @@ public interface CarRepository extends JpaRepository<Car,Long> {
     @Query("update Car u set u.model = :model, u.brand = :brand, u.carClass = :carClass, u.price = :price  where u.id = :id")
     void updateCar(String model, String brand, CarClass carClass, BigDecimal price, Long id);
 
+
 }

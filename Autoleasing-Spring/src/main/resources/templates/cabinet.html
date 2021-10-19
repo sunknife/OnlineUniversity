@@ -12,10 +12,14 @@
 <h2 th:text="#{cabinet.page.cars.table.name}"></h2>
 <table border="1">
     <tr>
-        <th th:text="#{admin.cars.page.cars.table.car.model}"></th>
+        <th>
+            <a th:href = "@{/auth/cabinet/(sort_by=model,sort_dir=${direction})}" th:text="#{admin.cars.page.cars.table.car.model}"></a>
+        </th>
         <th th:text="#{admin.cars.page.cars.table.car.brand}"></th>
         <th th:text="#{admin.cars.page.cars.table.car.class}"></th>
-        <th th:text="#{admin.cars.page.cars.table.car.price}"></th>
+        <th>
+            <a th:href = "@{/auth/cabinet/(sort_by=price,sort_dir=${direction})}" th:text="#{admin.cars.page.cars.table.car.price}"></a>
+        </th>
         <th th:text="#{admin.cars.page.cars.table.car.action}"></th>
     </tr>
     <tr th:each = "car: ${cars}">
