@@ -10,6 +10,26 @@
     <button type="submit" th:text="#{cabinet.page.logout.button}" ></button>
 </form>
 <h2 th:text="#{cabinet.page.cars.table.name}"></h2>
+<form  th:href="@{/auth/cabinet/filter-by-brand(brand=${brand})}" method="POST">
+    <table>
+        <tr>
+            <td th:text="#{cabinet.page.filter.by.brand.name}">Select brand</td>
+            <td>
+                <select name="brand">
+                    <option value="">--</option>
+                    <option th:each="car: ${cars}" th:value="${car.brand}" th:utext="${car.brand}">
+                    </option>
+                </select>
+            </td>
+            <td>
+                <button type="submit" th:text="#{cabinet.page.filter.button}" ></button>
+            </td>
+        </tr>
+    </table>
+</form>
+<form action="/auth/cabinet" method="get">
+    <button type="submit" th:text="#{cabinet.page.filter.reset}" ></button>
+</form>
 <table border="1">
     <tr>
         <th>
@@ -32,5 +52,6 @@
         </td>
     </tr>
 </table>
+
 </body>
 </html>

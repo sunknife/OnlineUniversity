@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 public interface CarRepository extends JpaRepository<Car,Long> {
@@ -19,5 +20,7 @@ public interface CarRepository extends JpaRepository<Car,Long> {
     @Query("update Car u set u.model = :model, u.brand = :brand, u.carClass = :carClass, u.price = :price  where u.id = :id")
     void updateCar(String model, String brand, CarClass carClass, BigDecimal price, Long id);
 
+    List<Car> findByBrand(String brand);
 
+    List<Car> findByCarClass(String carClass);
 }

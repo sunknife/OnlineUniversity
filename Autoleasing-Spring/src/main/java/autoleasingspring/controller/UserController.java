@@ -46,6 +46,13 @@ public class UserController {
         return "cabinet";
     }
 
+    @PostMapping("")
+    public String filterByBrand(@RequestParam String brand, Model model) {
+        model.addAttribute("direction", "asc");
+        model.addAttribute("cars", carService.findCarsByBrand(brand));
+        return "cabinet";
+    }
+
     @GetMapping("/order")
     public String orderFillStart(@RequestParam Long id, Model model, HttpServletRequest request) {
         String username = request.getUserPrincipal().getName();

@@ -5,6 +5,9 @@
     <title th:text="#{user.order.page.title}"></title>
 </head>
 <body>
+<form action="/auth/cabinet" method="get">
+    <button type="submit" th:text="#{admin.cars.page.back}" ></button>
+</form>
 <form action="/auth/cabinet/save_order" th:object="${order}" method="POST">
     <div>
         <input type="hidden" id="carId" name="carId" th:field="${order.carId}">

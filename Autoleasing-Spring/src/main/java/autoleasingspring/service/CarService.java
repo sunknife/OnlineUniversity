@@ -26,7 +26,7 @@ public class CarService {
     }
 
     public List<Car> getAllCarsSortedBy(String sorted_by, String sorted_dir) {
-        return carRepository.findAll(Sort.by(Sort.Direction.fromString(sorted_dir.toUpperCase()), sorted_by));
+        return carRepository.findAll(Sort.by(Sort.Direction.fromString(sorted_dir), sorted_by));
     }
 
     public void saveCar(Car car){
@@ -44,4 +44,10 @@ public class CarService {
     public Optional<Car> findCarById(Long id) {
         return carRepository.findById(id);
     }
+
+    public List<Car> findCarsByBrand(String brand) {
+        return carRepository.findByBrand(brand);
+    }
+
+    public List<Car> findCarsByClass(String carClass) {return carRepository.findByCarClass(carClass);}
 }
