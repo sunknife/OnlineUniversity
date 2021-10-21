@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -28,6 +29,10 @@ public class Order {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "end_date")
     LocalDate endDate;
+    @Column(name = "price")
+    BigDecimal price;
+    @Column(name = "is_paid")
+    Boolean isPaid;
     @Enumerated(value = EnumType.STRING)
     @Column(name = "status")
     OrderStatus status;

@@ -2,6 +2,7 @@ package autoleasingspring.service;
 
 import autoleasingspring.entity.Order;
 import autoleasingspring.repository.OrderRepository;
+import javafx.scene.layout.BorderImage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +24,13 @@ public class OrderService {
 
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
+    }
+
+    public Long getLastRecordId() {
+        return orderRepository.findLastRecordId();
+    }
+
+    public void updatePaidStatus(Boolean isPaid, Long id){
+        orderRepository.updateOrderPaidStatus(isPaid, id);
     }
 }

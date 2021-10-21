@@ -1,9 +1,6 @@
 package autoleasingspring.controller;
 
-import autoleasingspring.entity.CarClass;
-import autoleasingspring.entity.Order;
-import autoleasingspring.entity.OrderStatus;
-import autoleasingspring.entity.User;
+import autoleasingspring.entity.*;
 import autoleasingspring.service.CarService;
 import autoleasingspring.service.OrderService;
 import autoleasingspring.service.UserService;
@@ -16,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
+import java.time.Period;
 import java.util.Optional;
 
 @Controller
@@ -74,8 +73,30 @@ public class UserController {
 
     @PostMapping("/save_order")
     public String orderFillEnd(@ModelAttribute Order order, Model model) {
+        model.addAttribute("order", order);
+        Period period = Period.between(order.getStartDate(),order.getEndDate());
+        Optional<Car> car = carService.findCarById(order.getCarId());
+        BigDecimal carPrice = car.get().getPrice();
+        int orderDays = period.getDays();
+        boolean isDriverOrdered = order.getIsWithDriver();
+        BigDecimal totalPrice =BigDecimal.valueOf(isDriverOrdered?100:0).add(carPrice).multiply(BigDecimal.valueOf(orderDays));
+        order.setPrice(totalPrice);
         order.setStatus(OrderStatus.NEW);
+        order.setIsPaid(false);
         orderService.saveOrder(order);
+        Long lastOrder = orderService.getLastRecordId();
+        model.addAttribute("orderDuration", orderDays);
+        model.addAttribute("carPrice",carPrice);
+        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("carName", car.get().getBrand() + " " + car.get().getModel());
+        model.addAttribute("orderId", lastOrder);
+        return "bill";
+    }
+
+    @PostMapping("/bill")
+    public String payTheBill(@RequestParam Long orderId, Model model){
+        orderService.updatePaidStatus(true, orderId);
+        model.addAttribute("direction", "asc");
         model.addAttribute("cars", carService.getAllCars());
         return "cabinet";
     }

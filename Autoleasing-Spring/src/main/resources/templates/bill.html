@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/auth/cabinet/bill(orderId=${orderId})}" th:object="${order}" method="POST">
+    <div>
+        <label th:text="#{bill.page.car.name}"></label>
+        <span th:text="${carName}"></span>
+    </div>
+    <div>
+        <label th:text="#{bill.page.car.price}"></label>
+        <span th:text="${carPrice+'$'}"></span>
+    </div>
+    <div>
+        <label th:text="#{bill.page.is.with.driver}"></label>
+        <span th:text="${order.isWithDriver} ? '+100.00$' : '+0.00$'" > </span>
+    </div>
+    <div>
+        <label th:text="#{bill.page.order.duration}"></label>
+        <span th:text="${orderDuration}"></span>
+    </div>
+    <br>
+    <div>
+        <strong th:text="#{bill.page.order.price}"></strong>
+        <strong th:text="${totalPrice+'$'}"></strong>
+    </div>
+    <button type="submit" th:text="#{bill.page.pay}">submit</button>
+</form>
+</body>
+</html>
