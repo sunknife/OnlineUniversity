@@ -49,5 +49,5 @@ public class CarService {
         return carRepository.findByBrand(brand);
     }
 
-    public List<Car> findCarsByClass(String carClass) {return carRepository.findByCarClass(carClass);}
+    public List<Car> findCarsByClass(CarClass carClass) {return carRepository.findByCarClass(carClass);}
 }

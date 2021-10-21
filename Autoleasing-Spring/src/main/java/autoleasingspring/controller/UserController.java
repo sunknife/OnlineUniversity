@@ -1,5 +1,6 @@
 package autoleasingspring.controller;
 
+import autoleasingspring.entity.CarClass;
 import autoleasingspring.entity.Order;
 import autoleasingspring.entity.OrderStatus;
 import autoleasingspring.entity.User;
@@ -46,10 +47,17 @@ public class UserController {
         return "cabinet";
     }
 
-    @PostMapping("")
+    @GetMapping("/filter-by-brand")
     public String filterByBrand(@RequestParam String brand, Model model) {
         model.addAttribute("direction", "asc");
         model.addAttribute("cars", carService.findCarsByBrand(brand));
+        return "cabinet";
+    }
+
+    @GetMapping("/filter-by-class")
+    public String filterByClass(@RequestParam CarClass carClass, Model model) {
+        model.addAttribute("direction", "asc");
+        model.addAttribute("cars", carService.findCarsByClass(carClass));
         return "cabinet";
     }
 
