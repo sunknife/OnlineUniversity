@@ -18,7 +18,10 @@
         <th th:text="#{manager.page.orders.table.user.withDriver}"></th>
         <th th:text="#{manager.page.orders.table.order.start.date}"></th>
         <th th:text="#{manager.page.orders.table.order.end.date}"></th>
+        <th th:text="#{manager.page.orders.table.order.price}"></th>
+        <th th:text="#{manager.page.orders.table.order.is.paid}"></th>
         <th th:text="#{manager.page.orders.table.order.status}"></th>
+        <th th:text="#{manager.page.orders.table.order.action}"></th>
     </tr>
     <tr th:each = "order: ${orders}">
         <td th:text="${order.userId}"></td>
@@ -27,7 +30,20 @@
         <td th:text="${order.isWithDriver}"></td>
         <td th:text="${order.startDate}"></td>
         <td th:text="${order.endDate}"></td>
+        <td th:text="${order.price}"></td>
+        <td th:text="${order.isPaid}"></td>
         <td th:text="${order.status}"></td>
+        <td>
+            <form th:action="@{/auth/manager/update(orderId=${order.id}, status=${newStatus})}" method="GET">
+                    <select name="newStatus">
+                        <option th:each="statusOpt : ${T(autoleasingspring.entity.OrderStatus).values()}"
+                                th:value="${statusOpt}" th:text="${statusOpt}">
+                        </option>
+                    </select>
+                    <input type="hidden" name="orderId" th:value="${order.id}">
+                <button type="submit" th:text="#{manager.page.orders.table.order.action.button}"> </button>
+            </form>
+        </td>
     </tr>
 </table>
 </body>

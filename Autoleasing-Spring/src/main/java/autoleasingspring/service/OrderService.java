@@ -1,6 +1,7 @@
 package autoleasingspring.service;
 
 import autoleasingspring.entity.Order;
+import autoleasingspring.entity.OrderStatus;
 import autoleasingspring.repository.OrderRepository;
 import javafx.scene.layout.BorderImage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,9 @@ public class OrderService {
 
     public void updatePaidStatus(Boolean isPaid, Long id){
         orderRepository.updateOrderPaidStatus(isPaid, id);
+    }
+
+    public void updateOrderStatus(OrderStatus status, Long id) {
+        orderRepository.updateOrderStatus(status,id);
     }
 }
