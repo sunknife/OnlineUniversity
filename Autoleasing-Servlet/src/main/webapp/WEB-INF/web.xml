@@ -3,7 +3,7 @@
 
   <servlet>
     <servlet-name>HelloServlet</servlet-name>
-    <servlet-class>autoleasing.HelloServlet</servlet-class>
+    <servlet-class>autoleasing.controller.Servlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>HelloServlet</servlet-name>
