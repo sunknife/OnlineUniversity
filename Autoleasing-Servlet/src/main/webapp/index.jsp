@@ -7,10 +7,11 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<h2 ><fmt:message key="first.message"/></h2>
-    <a href="?lang=en">English</a>
-    <a href="?lang=ua">Українська</a>
-    <a href="servlet">See servlet</a>
+<h2 ><fmt:message key="main.page.header"/></h2>
+    <a href="?lang=en"><fmt:message key="english.button.text"/></a>
+    <a href="?lang=ua"><fmt:message key="ukrainian.button.text"/></a>
+    <br/>
+    <a href="${pageContext.request.contextPath}/login.jsp"><fmt:message key="main.page.login"/></a>
 
 </body>
 </html>
