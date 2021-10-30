@@ -20,15 +20,16 @@ public class LoginCommand implements Command{
             return "/WEB-INF/error.jsp";
         }
         //change to role in database
+        System.out.println("LoginCommand works");
         if (username.equals("ilya@example.com")){
             CommandUtility.setUserRole(servletRequest, Role.ADMIN, username);
-            return "/WEB-INF/admin/adminbase.jsp";
+            return "redirect:/WEB-INF/admin/adminbase.jsp";
         } else if (username.equals("ihor@example.com")) {
             CommandUtility.setUserRole(servletRequest, Role.USER, username);
-            return "/WEB-INF/user/userbase.jsp";
+            return "redirect:/WEB-INF/user/userbase.jsp";
         } else if (username.equals("artem@example.com")){
             CommandUtility.setUserRole(servletRequest, Role.MANAGER, username);
-            return "/WEB-INF/manager/managerbase.jsp";
+            return "redirect:/WEB-INF/manager/managerbase.jsp";
         } else {
             System.out.println("Guest works");
             CommandUtility.setUserRole(servletRequest, Role.GUEST, username);

@@ -1,4 +1,4 @@
-<web-app>
+<web-app version="3.0">
   <display-name>Archetype Created Web Application</display-name>
 
   <servlet>
@@ -34,4 +34,14 @@
     <filter-name>AuthFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+  <listener>
+    <listener-class>
+      autoleasing.controller.listener.SessionListener
+    </listener-class>
+  </listener>
 </web-app>

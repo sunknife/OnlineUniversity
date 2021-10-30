@@ -1,6 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${lang}" />
+<fmt:setBundle basename="messages"/>
+<html lang="${lang}">
 <head>
     <title><fmt:message key="cabinet.page.title"/></title>
 </head>

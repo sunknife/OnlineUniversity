@@ -21,16 +21,16 @@ public class Servlet extends HttpServlet {
     public void init(ServletConfig servletConfig) {
         servletConfig.getServletContext().setAttribute("loggedUsers", new HashSet<String>());
 
-        commands.put("login", new LoginCommand());
-        commands.put("logout", new LogoutCommand());
+        commands.put("/login", new LoginCommand());
+        commands.put("/logout", new LogoutCommand());
     }
 
     public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
 
         processRequest(httpServletRequest,httpServletResponse);
 
-        httpServletResponse.getWriter().println("Hello from servlet");
-        httpServletResponse.getWriter().println("Привіт");
+        //httpServletResponse.getWriter().println("Hello from servlet");
+        //httpServletResponse.getWriter().println("Привіт");
     }
 
     public void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
@@ -41,12 +41,12 @@ public class Servlet extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String path = request.getRequestURI();
         System.out.println(path);
-        //path.replaceAll(".*/auth/","");
         Command command = commands.getOrDefault(path, (r)->"/index.jsp");
         System.out.println(command.getClass().getName());
         String page = command.execute(request);
+        System.out.println(page);
         if (page.contains("redirect:")) {
-            response.sendRedirect(page.replace("redirect:", "/auth"));
+            response.sendRedirect(page.replace("redirect:",""));
         } else {
             request.getRequestDispatcher(page).forward(request,response);
         }
