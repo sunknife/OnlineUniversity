@@ -24,13 +24,20 @@ public class AuthFilter implements Filter {
         System.out.println(session.getAttribute("role"));
         System.out.println(context.getAttribute("loggedUsers"));
         Role role = (Role) session.getAttribute("role");
-        if (role != null && session.getAttribute("username") != null
-                && session.getAttribute("password") != null) {
-
+        if (session.getAttribute("username") != null
+                && session.getAttribute("password") != null
+                    && role != null) {
+            moveTo(request,response, role);
         } else  {
-            role = Role.GUEST;
+            moveTo(request,response, Role.GUEST);
             }
 
+
+
+        filterChain.doFilter(servletRequest,servletResponse);
+    }
+
+    private void moveTo(HttpServletRequest request, HttpServletResponse response, final Role role) throws ServletException, IOException {
         if (role.equals(Role.ADMIN)) {
             request.getRequestDispatcher("/WEB-INF/admin/adminbase.jsp").forward(request,response);
         } else if (role.equals(Role.USER)) {
@@ -40,8 +47,6 @@ public class AuthFilter implements Filter {
         } else {
             request.getRequestDispatcher("/login.jsp");
         }
-
-        filterChain.doFilter(servletRequest,servletResponse);
     }
 
     @Override

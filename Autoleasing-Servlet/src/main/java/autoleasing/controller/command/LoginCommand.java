@@ -12,6 +12,9 @@ public class LoginCommand implements Command{
 
         if( username == null || username.equals("") || password == null || password.equals("")  ){
             return "/login.jsp";
+        } else {
+            servletRequest.getSession().getServletContext().setAttribute("username", username);
+            servletRequest.getSession().getServletContext().setAttribute("password", password);
         }
 
         //check user in db
