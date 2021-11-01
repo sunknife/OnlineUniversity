@@ -21,8 +21,8 @@ public class AuthFilter implements Filter {
 
         HttpSession session = request.getSession();
         ServletContext context = servletRequest.getServletContext();
-        System.out.println(session.getAttribute("role"));
-        System.out.println(context.getAttribute("loggedUsers"));
+        //System.out.println(session.getAttribute("role"));
+        //System.out.println(context.getAttribute("loggedUsers"));
         Role role = (Role) session.getAttribute("role");
         if (session.getAttribute("username") != null
                 && session.getAttribute("password") != null

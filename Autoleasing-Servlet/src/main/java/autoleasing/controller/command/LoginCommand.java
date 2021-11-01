@@ -3,6 +3,7 @@ package autoleasing.controller.command;
 import autoleasing.model.entity.Role;
 import autoleasing.model.entity.User;
 import autoleasing.model.service.UserService;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
@@ -26,18 +27,17 @@ public class LoginCommand implements Command{
         }
 
         Optional<User> user = userService.login(username);
-        System.out.println(user);
+
         if (!user.isPresent()) {
             return "/login.jsp";
-        } else if ( true /*user.get().getPassword() == password*/) {
-            servletRequest.getSession().setAttribute("user", user.get());
+        } else if (BCrypt.checkpw(password,user.get().getPassword())) {
 
+            servletRequest.getSession().setAttribute("user", user.get());
 
             if (CommandUtility.checkUserIsLogged(servletRequest, username)) {
                 return "/WEB-INF/error.jsp";
             }
-            //change to role in database
-            System.out.println("LoginCommand works");
+
             if (user.get().getRole().equals(Role.ADMIN)) {
                 CommandUtility.setUserRole(servletRequest, Role.ADMIN, username);
                 return "redirect:/WEB-INF/admin/adminbase.jsp";
