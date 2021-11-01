@@ -1,10 +1,21 @@
 package autoleasing.controller.command;
 
 import autoleasing.model.entity.Role;
+import autoleasing.model.entity.User;
+import autoleasing.model.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 public class LoginCommand implements Command{
+
+    private UserService userService;
+
+
+    public LoginCommand(UserService userService) {
+        this.userService = userService;
+    }
+
     @Override
     public String execute(HttpServletRequest servletRequest) {
         String username = servletRequest.getParameter("username");
@@ -12,31 +23,36 @@ public class LoginCommand implements Command{
 
         if( username == null || username.equals("") || password == null || password.equals("")  ){
             return "/login.jsp";
-        } else {
-            servletRequest.getSession().getServletContext().setAttribute("username", username);
-            servletRequest.getSession().getServletContext().setAttribute("password", password);
         }
 
-        //check user in db
-
-        if(CommandUtility.checkUserIsLogged(servletRequest, username)){
-            return "/WEB-INF/error.jsp";
-        }
-        //change to role in database
-        System.out.println("LoginCommand works");
-        if (username.equals("ilya@example.com")){
-            CommandUtility.setUserRole(servletRequest, Role.ADMIN, username);
-            return "redirect:/WEB-INF/admin/adminbase.jsp";
-        } else if (username.equals("ihor@example.com")) {
-            CommandUtility.setUserRole(servletRequest, Role.USER, username);
-            return "redirect:/WEB-INF/user/userbase.jsp";
-        } else if (username.equals("artem@example.com")){
-            CommandUtility.setUserRole(servletRequest, Role.MANAGER, username);
-            return "redirect:/WEB-INF/manager/managerbase.jsp";
-        } else {
-            System.out.println("Guest works");
-            CommandUtility.setUserRole(servletRequest, Role.GUEST, username);
+        Optional<User> user = userService.login(username);
+        System.out.println(user);
+        if (!user.isPresent()) {
             return "/login.jsp";
+        } else if ( true /*user.get().getPassword() == password*/) {
+            servletRequest.getSession().setAttribute("user", user.get());
+
+
+            if (CommandUtility.checkUserIsLogged(servletRequest, username)) {
+                return "/WEB-INF/error.jsp";
+            }
+            //change to role in database
+            System.out.println("LoginCommand works");
+            if (user.get().getRole().equals(Role.ADMIN)) {
+                CommandUtility.setUserRole(servletRequest, Role.ADMIN, username);
+                return "redirect:/WEB-INF/admin/adminbase.jsp";
+            } else if (user.get().getRole().equals(Role.USER)) {
+                CommandUtility.setUserRole(servletRequest, Role.USER, username);
+                return "redirect:/WEB-INF/user/userbase.jsp";
+            } else if (user.get().getRole().equals(Role.MANAGER)) {
+                CommandUtility.setUserRole(servletRequest, Role.MANAGER, username);
+                return "redirect:/WEB-INF/manager/managerbase.jsp";
+            } else {
+                System.out.println("Guest works");
+                CommandUtility.setUserRole(servletRequest, Role.GUEST, username);
+                return "/login.jsp";
+            }
         }
+        return "/login.jsp";
     }
 }

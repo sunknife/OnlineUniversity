@@ -3,6 +3,7 @@ package autoleasing.controller;
 import autoleasing.controller.command.Command;
 import autoleasing.controller.command.LoginCommand;
 import autoleasing.controller.command.LogoutCommand;
+import autoleasing.model.service.UserService;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -21,7 +22,7 @@ public class Servlet extends HttpServlet {
     public void init(ServletConfig servletConfig) {
         servletConfig.getServletContext().setAttribute("loggedUsers", new HashSet<String>());
 
-        commands.put("/login", new LoginCommand());
+        commands.put("/login", new LoginCommand(new UserService()));
         commands.put("/logout", new LogoutCommand());
     }
 
