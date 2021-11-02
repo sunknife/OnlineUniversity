@@ -1,8 +1,6 @@
 package autoleasing.controller;
 
-import autoleasing.controller.command.Command;
-import autoleasing.controller.command.LoginCommand;
-import autoleasing.controller.command.LogoutCommand;
+import autoleasing.controller.command.*;
 import autoleasing.model.service.UserService;
 
 import javax.servlet.ServletConfig;
@@ -24,6 +22,8 @@ public class Servlet extends HttpServlet {
 
         commands.put("/login", new LoginCommand(new UserService()));
         commands.put("/logout", new LogoutCommand());
+        commands.put("/admin/ban" ,new AdminBanUserCommand(new UserService()));
+        commands.put("/admin/unblock", new AdminUnblockUserCommand(new UserService()));
     }
 
     public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {

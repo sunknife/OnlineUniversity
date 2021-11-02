@@ -2,11 +2,13 @@ package autoleasing.model.dao.implementation;
 
 import autoleasing.model.dao.UserDao;
 import autoleasing.model.dao.mapper.UserMapper;
+import autoleasing.model.entity.Status;
 import autoleasing.model.entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +31,18 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public List<User> findAll() {
-        return null;
+        List<User> result = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareCall("SELECT * FROM users")) {
+            ResultSet resultSet;
+            resultSet = preparedStatement.executeQuery();
+            UserMapper mapper = new UserMapper();
+            while (resultSet.next()) {
+                result.add(mapper.extractFromResultSet(resultSet));
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException();
+        }
+        return result;
     }
 
     @Override
@@ -63,5 +76,16 @@ public class JDBCUserDao implements UserDao {
             throw new RuntimeException();
         }
         return result;
+    }
+
+    @Override
+    public void updateStatus(Long id, Status status) {
+        try (PreparedStatement preparedStatement = connection.prepareCall("UPDATE users SET status = ? WHERE id = ?")){
+            preparedStatement.setString(1, status.toString());
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+        } catch (Exception ex) {
+            throw new RuntimeException();
+        }
     }
 }
