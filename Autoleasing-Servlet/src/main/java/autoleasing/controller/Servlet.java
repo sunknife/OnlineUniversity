@@ -22,8 +22,11 @@ public class Servlet extends HttpServlet {
 
         commands.put("/login", new LoginCommand(new UserService()));
         commands.put("/logout", new LogoutCommand());
+        commands.put("/admin", new AdminBaseCommand());
         commands.put("/admin/ban" ,new AdminBanUserCommand(new UserService()));
         commands.put("/admin/unblock", new AdminUnblockUserCommand(new UserService()));
+        commands.put("/admin/save_manager", new AdminSaveManagerCommand(new UserService()));
+        commands.put("/admin/add_manager", new AdminAddManagerCommand());
     }
 
     public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
@@ -47,8 +50,8 @@ public class Servlet extends HttpServlet {
         String page = command.execute(request);
         System.out.println(page);
         if (page.contains("redirect:")) {
-            request.getRequestDispatcher(page.replace("redirect:","")).forward(request,response);
-            //response.sendRedirect(page.replace("redirect:",""));
+            //request.getRequestDispatcher(page.replace("redirect:","")).forward(request,response);
+            response.sendRedirect(page.replace("redirect:",""));
         } else {
             request.getRequestDispatcher(page).forward(request,response);
         }

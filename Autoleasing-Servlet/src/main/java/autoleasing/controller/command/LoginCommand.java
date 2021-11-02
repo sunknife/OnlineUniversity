@@ -33,6 +33,7 @@ public class LoginCommand implements Command{
         } else if (BCrypt.checkpw(password,user.get().getPassword())) {
 
             servletRequest.getSession().setAttribute("user", user.get());
+            servletRequest.getSession().setAttribute("role", user.get().getRole());
 
             if (CommandUtility.checkUserIsLogged(servletRequest, username)) {
                 return "/WEB-INF/error.jsp";
@@ -41,7 +42,7 @@ public class LoginCommand implements Command{
             if (user.get().getRole().equals(Role.ADMIN)) {
                 CommandUtility.setUserRole(servletRequest, Role.ADMIN, username);
                 servletRequest.getSession().setAttribute("users", userService.findAll());
-                return "redirect:/WEB-INF/admin/adminbase.jsp";
+                return "redirect:/admin";
             } else if (user.get().getRole().equals(Role.USER)) {
                 CommandUtility.setUserRole(servletRequest, Role.USER, username);
                 return "redirect:/WEB-INF/user/userbase.jsp";

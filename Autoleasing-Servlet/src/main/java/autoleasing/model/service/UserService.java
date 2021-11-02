@@ -32,4 +32,10 @@ public class UserService {
             userDao.updateStatus(id,status);
         }
     }
+
+    public void addUser(User user) {
+        try (UserDao userDao = daoFactory.createUserDao()) {
+            userDao.create(user);
+        }
+    }
 }

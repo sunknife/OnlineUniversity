@@ -20,7 +20,7 @@
          <input class="button" type="submit" value="${submitButton}">
     </form>
     <br/>
-    <a href="${pageContext.request.contextPath}/logout"><fmt:message key="admin.cars.page.back"/></a>
+    <a href="${pageContext.request.contextPath}/"><fmt:message key="admin.cars.page.back"/></a>
 
 </body>
 </html>
