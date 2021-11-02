@@ -27,6 +27,8 @@ public class Servlet extends HttpServlet {
         commands.put("/admin/unblock", new AdminUnblockUserCommand(new UserService()));
         commands.put("/admin/save_manager", new AdminSaveManagerCommand(new UserService()));
         commands.put("/admin/add_manager", new AdminAddManagerCommand());
+        commands.put("/manager", new ManagerBaseCommand());
+        commands.put("/error", new ErrorCommand());
     }
 
     public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
