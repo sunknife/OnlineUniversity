@@ -30,4 +30,10 @@ public class CarService {
             carDao.update(car);
         }
     }
+
+    public void addCar(Car car) {
+        try (CarDao carDao = daoFactory.createCarDao()) {
+            carDao.create(car);
+        }
+    }
 }

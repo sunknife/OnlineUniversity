@@ -33,6 +33,8 @@ public class Servlet extends HttpServlet {
         commands.put("/admin/cars", new AdminCarsMenuCommand(new CarService()));
         commands.put("/admin/cars/edit", new AdminEditCarCommand(new CarService()));
         commands.put("/admin/cars/save_edit_car", new AdminSaveEditCarCommand(new CarService()));
+        commands.put("/admin/addcar",new AdminAddCarCommand());
+        commands.put("/admin/save_new_car", new AdminSaveCarCommand(new CarService()));
     }
 
     public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {

@@ -17,6 +17,7 @@ public class LogoutCommand implements Command{
 
         session.removeAttribute("role");
         session.removeAttribute("user");
+        session.removeAttribute("username");
 
         loggedUsers.clear();
         session.setAttribute("loggedUsers", loggedUsers);

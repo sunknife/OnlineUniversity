@@ -34,6 +34,7 @@ public class LoginCommand implements Command{
 
             servletRequest.getSession().setAttribute("user", user.get());
             servletRequest.getSession().setAttribute("role", user.get().getRole());
+            servletRequest.getSession().setAttribute("username",user.get().getEmail());
 
             if (CommandUtility.checkUserIsLogged(servletRequest, username)) {
                 return "/WEB-INF/error.jsp";

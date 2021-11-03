@@ -19,7 +19,16 @@ public class JDBCCarDao implements CarDao {
 
     @Override
     public void create(Car entity) {
-
+        try (PreparedStatement preparedStatement = connection.
+                prepareCall("INSERT INTO cars (model, brand, class, price) VALUES (?, ?, ?, ?)")) {
+            preparedStatement.setString(1, entity.getModel());
+            preparedStatement.setString(2, entity.getBrand());
+            preparedStatement.setString(3,entity.getCarClass().toString());
+            preparedStatement.setBigDecimal(4,entity.getPrice());
+            preparedStatement.executeUpdate();
+        } catch (Exception ex) {
+            throw new RuntimeException();
+        }
     }
 
     @Override

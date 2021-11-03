@@ -35,7 +35,7 @@
     </c:forEach>
 
 </table>
-<form action="/auth/admin/addcar" method="get">
+<form action="/admin/addcar" method="get">
     <button type="submit"><fmt:message key="admin.cars.page.cars.table.car.add.car"/></button>
 </form>
 
