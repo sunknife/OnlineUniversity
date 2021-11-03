@@ -1,6 +1,7 @@
 package autoleasing.controller;
 
 import autoleasing.controller.command.*;
+import autoleasing.model.service.CarService;
 import autoleasing.model.service.UserService;
 
 import javax.servlet.ServletConfig;
@@ -29,6 +30,9 @@ public class Servlet extends HttpServlet {
         commands.put("/admin/add_manager", new AdminAddManagerCommand());
         commands.put("/manager", new ManagerBaseCommand());
         commands.put("/error", new ErrorCommand());
+        commands.put("/admin/cars", new AdminCarsMenuCommand(new CarService()));
+        commands.put("/admin/cars/edit", new AdminEditCarCommand(new CarService()));
+        commands.put("/admin/cars/save_edit_car", new AdminSaveEditCarCommand(new CarService()));
     }
 
     public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
@@ -46,11 +50,12 @@ public class Servlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String path = request.getRequestURI();
+        //remove sout
         System.out.println(path);
         Command command = commands.getOrDefault(path, (r)->"/index.jsp");
+        //remove sout
         System.out.println(command.getClass().getName());
         String page = command.execute(request);
-        System.out.println(page);
         if (page.contains("redirect:")) {
             //request.getRequestDispatcher(page.replace("redirect:","")).forward(request,response);
             response.sendRedirect(page.replace("redirect:",""));

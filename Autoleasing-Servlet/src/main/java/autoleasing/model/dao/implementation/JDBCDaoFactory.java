@@ -1,5 +1,6 @@
 package autoleasing.model.dao.implementation;
 
+import autoleasing.model.dao.CarDao;
 import autoleasing.model.dao.DaoFactory;
 import autoleasing.model.dao.UserDao;
 
@@ -13,6 +14,11 @@ public class JDBCDaoFactory extends DaoFactory {
     @Override
     public UserDao createUserDao() {
         return new JDBCUserDao(getConnection());
+    }
+
+    @Override
+    public CarDao createCarDao() {
+        return new JDBCCarDao(getConnection());
     }
 
     private Connection getConnection(){

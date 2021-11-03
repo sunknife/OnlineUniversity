@@ -33,7 +33,6 @@ public class AuthFilter implements Filter {
 
         boolean loggedIn = session != null && session.getAttribute("user") != null;
         String loginRequest = request.getRequestURI();
-        System.out.println(loginRequest);
         boolean isGuestPath = guestPageList.contains(loginRequest);
 
         if (loggedIn || isGuestPath) {
@@ -48,17 +47,6 @@ public class AuthFilter implements Filter {
 
     }
 
-    private void moveTo(HttpServletRequest request, HttpServletResponse response, final Role role) throws ServletException, IOException {
-        if (role.equals(Role.ADMIN)) {
-            request.getRequestDispatcher("/WEB-INF/admin/adminbase.jsp").forward(request,response);
-        } else if (role.equals(Role.USER)) {
-            request.getRequestDispatcher("/WEB-INF/user/userbase.jsp").forward(request,response);
-        } else if (role.equals(Role.MANAGER)){
-            request.getRequestDispatcher("/WEB-INF/manager/managerbase.jsp").forward(request,response);
-        } else {
-            request.getRequestDispatcher("/login.jsp");
-        }
-    }
 
     @Override
     public void destroy() {

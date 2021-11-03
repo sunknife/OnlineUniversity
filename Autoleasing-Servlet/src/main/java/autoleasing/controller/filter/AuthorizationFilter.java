@@ -36,7 +36,7 @@ public class AuthorizationFilter implements Filter {
             if (role.equals(Role.ADMIN) && hasAdminPath || role.equals(Role.MANAGER) && hasManagerPath || role.equals(Role.USER) && hasUserPath || path.contains("/logout")) {
                 filterChain.doFilter(request, response);
             } else {
-                response.sendRedirect("/error");
+                request.getRequestDispatcher("/WEB-INF/error.jsp").forward(request,response);
             }
         } else {
             filterChain.doFilter(request,response);
