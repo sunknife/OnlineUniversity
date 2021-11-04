@@ -51,7 +51,6 @@ public class LoginCommand implements Command{
                 CommandUtility.setUserRole(servletRequest, Role.MANAGER, username);
                 return "redirect:/manager";
             } else {
-                System.out.println("Guest works");
                 CommandUtility.setUserRole(servletRequest, Role.GUEST, username);
                 return "/login.jsp";
             }

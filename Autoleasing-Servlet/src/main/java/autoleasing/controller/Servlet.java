@@ -40,6 +40,7 @@ public class Servlet extends HttpServlet {
         commands.put("/user/sort",new UserBaseSortCommand(new CarService()));
         commands.put("/user/filter-by-class",new UserFindByClassCommand(new CarService()));
         commands.put("/user/filter-by-brand", new UserFindByBrandCommand(new CarService()));
+        commands.put("/user/order",new UserOrderCommand());
     }
 
     public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
