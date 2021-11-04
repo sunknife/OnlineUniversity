@@ -35,6 +35,11 @@ public class Servlet extends HttpServlet {
         commands.put("/admin/cars/save_edit_car", new AdminSaveEditCarCommand(new CarService()));
         commands.put("/admin/addcar",new AdminAddCarCommand());
         commands.put("/admin/save_new_car", new AdminSaveCarCommand(new CarService()));
+        commands.put("/admin/cars/delete", new AdminDeleteCarCommand(new CarService()));
+        commands.put("/user", new UserBaseCommand(new CarService()));
+        commands.put("/user/sort",new UserBaseSortCommand(new CarService()));
+        commands.put("/user/filter-by-class",new UserFindByClassCommand(new CarService()));
+        commands.put("/user/filter-by-brand", new UserFindByBrandCommand(new CarService()));
     }
 
     public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
