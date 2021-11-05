@@ -60,14 +60,9 @@ public class Servlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String path = request.getRequestURI();
-        //remove sout
-        System.out.println(path);
         Command command = commands.getOrDefault(path, (r)->"/index.jsp");
-        //remove sout
-        System.out.println(command.getClass().getName());
         String page = command.execute(request);
         if (page.contains("redirect:")) {
-            //request.getRequestDispatcher(page.replace("redirect:","")).forward(request,response);
             response.sendRedirect(page.replace("redirect:",""));
         } else {
             request.getRequestDispatcher(page).forward(request,response);

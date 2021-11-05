@@ -21,7 +21,6 @@
         <th><fmt:message key="admin.page.users.table.user.name"/></th>
         <th><fmt:message key="admin.page.users.table.user.surname"/></th>
         <th><fmt:message key="admin.page.users.table.user.email"/></th>
-        <th><fmt:message key="admin.page.users.table.user.password"/></th>
         <th><fmt:message key="admin.page.users.table.user.role"/></th>
         <th><fmt:message key="admin.page.users.table.user.status"/></th>
         <th><fmt:message key="admin.page.users.table.user.status.table.action"/></th>
@@ -31,7 +30,6 @@
             <td><c:out value="${user.firstName}" /></td>
             <td><c:out value="${user.lastName}" /></td>
             <td><c:out value="${user.email}" /></td>
-            <td><c:out value="${user.password}" /></td>
             <td><c:out value="${user.role}" /></td>
             <td><c:out value="${user.status}" /></td>
             <td>
