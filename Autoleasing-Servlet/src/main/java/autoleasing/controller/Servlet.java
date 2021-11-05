@@ -29,7 +29,7 @@ public class Servlet extends HttpServlet {
         commands.put("/admin/unblock", new AdminUnblockUserCommand(new UserService()));
         commands.put("/admin/save_manager", new AdminSaveManagerCommand(new UserService()));
         commands.put("/admin/add_manager", new AdminAddManagerCommand());
-        commands.put("/manager", new ManagerBaseCommand());
+        commands.put("/manager", new ManagerBaseCommand(new OrderService()));
         commands.put("/error", new ErrorCommand());
         commands.put("/admin/cars", new AdminCarsMenuCommand(new CarService()));
         commands.put("/admin/cars/edit", new AdminEditCarCommand(new CarService()));
@@ -44,6 +44,7 @@ public class Servlet extends HttpServlet {
         commands.put("/user/order",new UserOrderCommand());
         commands.put("/user/save_order", new UserSaveOrderCommand(new CarService()));
         commands.put("/user/bill", new UserPayBillCommand(new OrderService()));
+        commands.put("/manager/update", new ManagerUpdateOrderStatusCommand(new OrderService()));
     }
 
     public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {

@@ -1,10 +1,14 @@
 package autoleasing.model.dao.implementation;
 
 import autoleasing.model.dao.OrderDao;
+import autoleasing.model.dao.mapper.OrderMapper;
 import autoleasing.model.entity.Order;
+import autoleasing.model.entity.OrderStatus;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JDBCOrderDao implements OrderDao {
@@ -40,7 +44,18 @@ public class JDBCOrderDao implements OrderDao {
 
     @Override
     public List<Order> findAll() {
-        return null;
+        List<Order> result = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareCall("SELECT * FROM orders")) {
+            ResultSet resultSet;
+            resultSet = preparedStatement.executeQuery();
+            OrderMapper mapper = new OrderMapper();
+            while (resultSet.next()) {
+                result.add(mapper.extractFromResultSet(resultSet));
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException();
+        }
+        return result;
     }
 
     @Override
@@ -56,5 +71,16 @@ public class JDBCOrderDao implements OrderDao {
     @Override
     public void close() {
 
+    }
+
+    @Override
+    public void updateOrderStatus(Long id, OrderStatus orderStatus) {
+        try (PreparedStatement preparedStatement = connection.prepareCall("UPDATE orders SET status = ? WHERE id = ?")) {
+            preparedStatement.setString(1,orderStatus.toString());
+            preparedStatement.setLong(2,id);
+            preparedStatement.executeUpdate();
+        } catch (Exception ex) {
+            throw new RuntimeException();
+        }
     }
 }
