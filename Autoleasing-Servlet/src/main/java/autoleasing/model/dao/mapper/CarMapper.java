@@ -20,8 +20,8 @@ public class CarMapper implements ObjectMapper<Car>{
     }
 
     @Override
-    public Car makeUnique(Map<Long, Car> cache, Car user) {
-        cache.putIfAbsent(user.getId(), user);
-        return cache.get(user.getId());
+    public Car makeUnique(Map<Long, Car> cache, Car entity) {
+        cache.putIfAbsent(entity.getId(), entity);
+        return cache.get(entity.getId());
     }
 }

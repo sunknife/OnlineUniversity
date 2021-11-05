@@ -25,7 +25,7 @@
     </div>
     <div>
         <label><fmt:message key="user.order.page.driver"/></label>
-        <input type="checkbox" id="isWithDriver" name="isWithDriver"/>
+        <input type="checkbox" id="isWithDriver" name="isWithDriver" value="true"/>
     </div>
     <div>
         <label><fmt:message key="user.order.page.start.date"/></label>

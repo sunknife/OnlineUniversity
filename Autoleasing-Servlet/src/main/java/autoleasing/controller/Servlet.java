@@ -2,6 +2,7 @@ package autoleasing.controller;
 
 import autoleasing.controller.command.*;
 import autoleasing.model.service.CarService;
+import autoleasing.model.service.OrderService;
 import autoleasing.model.service.UserService;
 
 import javax.servlet.ServletConfig;
@@ -41,14 +42,14 @@ public class Servlet extends HttpServlet {
         commands.put("/user/filter-by-class",new UserFindByClassCommand(new CarService()));
         commands.put("/user/filter-by-brand", new UserFindByBrandCommand(new CarService()));
         commands.put("/user/order",new UserOrderCommand());
+        commands.put("/user/save_order", new UserSaveOrderCommand(new CarService()));
+        commands.put("/user/bill", new UserPayBillCommand(new OrderService()));
     }
 
     public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
 
         processRequest(httpServletRequest,httpServletResponse);
 
-        //httpServletResponse.getWriter().println("Hello from servlet");
-        //httpServletResponse.getWriter().println("Привіт");
     }
 
     public void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
