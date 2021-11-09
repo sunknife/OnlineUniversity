@@ -16,7 +16,7 @@ public enum Role {
     ).collect(Collectors.toSet())),
 
     ADMIN(Stream.of(
-            Permission.USERS_READ,Permission.USERS_WRITE
+            Permission.USERS_WRITE
     ).collect(Collectors.toSet()));
 
     private final Set<Permission> permissions;
